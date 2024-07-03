@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="stop-watch">
+        <div class="box">
+            <h1 id="hours">00</h1>
+            <h1 id="minutes">00</h1>
+            <h1 id="seconds">00</h1>
+        </div>
+
+        <div class="button-box">
+            <button onclick="startTime()">Start</button>
+            <button onclick="stopTime()">Stop</button>
+            <button onclick="resetTime()">Resest</button>
+
+        </div>
+        </div>
+    </div>
+
+    <script>
+
+   let hours =  0;
+   let seconds = 0;
+   let intervalid;
+   let minute = 0;
+
+
+
+
+   function updatewatch (){
+    seconds++;
+    
+    document.getElementById("seconds").innerHTML = seconds;
+    if(seconds == "60"){
+    minute++;
+    document.getElementById("minutes").innerHTML = minute;
+    seconds =0;
+    document.getElementById("seconds").innerHTML =  "00";
+     
+    }
+
+    if(minute == "60"){
+        hours++;
+        document.getElementById("hours").innerHTML = hours;
+        minute =0;
+        document.getElementById("minutes").innerHTML =  "00";
+        seconds = 0;
+        document.getElementById("seconds").innerHTML =  "00";
+    }
+
+   }
+
+
+
+  function startTime() {
+    if(!intervalid){
+    intervalid = setInterval(updatewatch, 1000);
+    }
+}
+
+
+
+
+function stopTime(){
+    clearInterval(intervalid);
+    intervalid = null;
+    
+}
+
+
+
+
+ function resetTime(){
+   stopTime();
+   seconds = 0;
+    document.getElementById("seconds").innerHTML =  "00";
+    minute = 0;
+    document.getElementById("minutes").innerHTML =  "00";
+    hours = 0;
+    document.getElementById("hours").innerHTML = "00";
+
+ }
+
+
+    </script>
+</body>
+</html>
